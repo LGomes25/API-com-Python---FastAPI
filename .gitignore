@@ -1,0 +1,35 @@
+# .gitignore
+
+# Ambiente virtual do Poetry
+.venv/
+
+# Cache e arquivos compilados do Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Arquivos de lock e dependências temporárias
+poetry.lock
+
+# Configurações específicas do editor
+.vscode/
+
+# Logs e arquivos temporários
+*.log
+*.tmp
+*.swp
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Pastas de build e distribuição
+build/
+dist/
+*.egg-info/
+
+# Testes e cobertura
+.coverage
+htmlcov/
+.pytest_cache/
