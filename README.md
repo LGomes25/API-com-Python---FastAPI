@@ -24,7 +24,7 @@ API COM PYTHON - FASTAPI
 ├── .vscode/                      # Configurações específicas do VS Code
 ├── 01-api_assincronas_fastApi/   # Capítulo focado em APIs assíncronas
 │   └── fastApi_blog/             # Projeto principal FastAPI
-│       ├── .venv/                # Ambiente virtual isolado criado pelo Poetry
+│       ├── .venv/                # Ambiente virtual isolado criado com venv
 │       ├── controllers/          # Camada de controle (regras de negócio e rotas)
 │       │   └── post.py
 │       ├── models/               # Modelos de dados
@@ -34,34 +34,60 @@ API COM PYTHON - FASTAPI
 │       ├── views/                # Endpoints FastAPI (camada de apresentação)
 │       │   ├── main.py           # Ponto de entrada da aplicação FastAPI
 │       │   └── post.py
-│       ├── pyproject.toml        # Configuração do Poetry e dependências
-│       ├── poetry.lock           # Lockfile de dependências (versões exatas)
-│       ├── about_poetry.md       # Documentação sobre uso do Poetry
-│       └── iniciar_poetry_python.md # Guia inicial de configuração do Poetry
+│       ├── requirements.txt      # Dependências do projeto para instalação via pip
 ├── README.md                     # Documentação principal do repositório
 ```
 
 ---
 
-## ⚙️ Configuração com Poetry
+## ⚙️ Configuração com venv
 
-O projeto utiliza **Poetry** para gerenciar dependências e ambientes virtuais.  
-Principais arquivos:
-- `pyproject.toml` → define nome do projeto, versão, autores e dependências.  
-- `poetry.lock` → garante reprodutibilidade das versões instaladas.  
-- `.venv/` → ambiente virtual isolado criado pelo Poetry.  
+O projeto utiliza **venv** para gerenciar o ambiente virtual e um arquivo `requirements.txt` para dependências.
 
-Dependências principais:
-- **FastAPI** → framework para criação de APIs assíncronas.  
-- **Uvicorn** → servidor ASGI para rodar a aplicação.  
+### Passos para configurar o ambiente:
 
----
+1. Crie o ambiente virtual (dentro da pasta do projeto):
+	```
+	python -m venv .venv
+	```
+2. Ative o ambiente virtual:
+	 - **Windows (PowerShell):**
+		 ```
+		 . .venv\Scripts\Activate.ps1
+		 ```
+	 - **Windows (Prompt de Comando):**
+		 ```
+		 .venv\Scripts\activate.bat
+		 ```
+	 - **Linux/macOS:**
+		 ```
+		 source .venv/bin/activate
+		 ```
 
-## ▶️ Executando a API
+#### Problemas comuns no Windows
 
-**No terminal (dentro da pasta do projeto):**
+Se aparecer erro de permissão ao ativar o venv no PowerShell:
+
+1. Execute este comando no PowerShell (apenas uma vez):
+	 ```
+	 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+	 ```
+2. Feche e abra um novo terminal PowerShell e tente ativar novamente.
+
+Se continuar com erro, tente ativar pelo Prompt de Comando (cmd.exe):
 ```
-poetry run uvicorn views.main:app --reload
+.venv\Scripts\activate.bat
+```
+3. Instale as dependências:
+	```
+	pip install -r requirements.txt
+	```
+
+### Executando a API
+
+No terminal (com o ambiente ativado, dentro da pasta do projeto):
+```
+uvicorn main:app --reload
 ```
 
 **No navegador:**
@@ -83,8 +109,8 @@ http://127.0.0.1:8000/docs
 - A pasta controllers concentra a lógica de negócio.
 - A pasta models/schemas define os modelos de dados (ex: Pydantic).
 - A pasta views expõe os endpoints FastAPI.
-- O ambiente virtual .venv é criado automaticamente pelo Poetry dentro do projeto.
-- Arquivos auxiliares (about_poetry.md, iniciar_poetry_python.md) documentam o uso do Poetry e boas práticas.
+- O ambiente virtual .venv é criado com venv.
+- O arquivo requirements.txt lista as dependências do projeto.
 
 ---
 

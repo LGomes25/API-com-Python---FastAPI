@@ -1,6 +1,6 @@
 # .gitignore
 
-# Ambiente virtual do Poetry
+# Ambiente virtual do Python
 .venv/
 
 # Cache e arquivos compilados do Python
